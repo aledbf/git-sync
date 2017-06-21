@@ -23,7 +23,16 @@ RUN apk update --no-cache && apk add \
     ca-certificates \
     coreutils \
     git \
+    curl \
+    bash \
     openssh-client
 
+
+RUN curl -sSL -o /sbin/tini https://github.com/krallin/tini/releases/download/v0.14.0/tini-static-amd64 && \
+  chmod +x /sbin/tini
+
+ENTRYPOINT ["/sbin/tini", "--"]
+
 USER nobody:nobody
-ENTRYPOINT ["/ARG_BIN"]
+
+CMD ["/ARG_BIN"]

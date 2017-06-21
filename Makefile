@@ -43,7 +43,7 @@ ALL_ARCH := amd64
 
 # Set default base image dynamically for each arch
 ifeq ($(ARCH),amd64)
-    BASEIMAGE?=alpine:3.4
+    BASEIMAGE?=alpine:3.6
 endif
 ifeq ($(ARCH),arm)
     BASEIMAGE?=armel/busybox
@@ -58,7 +58,7 @@ endif
 IMAGE := $(REGISTRY)/$(BIN)-$(ARCH)
 LEGACY_IMAGE := $(REGISTRY)/$(BIN)
 
-BUILD_IMAGE ?= golang:1.7-alpine
+BUILD_IMAGE ?= golang:1.8-alpine
 
 # If you want to build all binaries, see the 'all-build' rule.
 # If you want to build all containers, see the 'all-container' rule.
